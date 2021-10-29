@@ -49,7 +49,7 @@ function renderChapter(args) {
                 name: i.name,
                 id: i.uuid,
                 time: i.datetime_created,
-                href: `https://www.copymanga.com/comic/${args.id}/chapter/${i.uuid}`
+                href: `https://www.copymanga.com/h5/comicContent/${args.id}/${i.uuid}`
             })),
         });
     });
