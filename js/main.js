@@ -11,7 +11,7 @@ function getQuery(search = window.location.search) {
 }
 
 const { mode, ...args } = getQuery();
-
+$.ajaxSettings.async = false
 function get(url, params) {
   url = url.replace(/\[:(.+)\]/g, () => args[RegExp.$1]);
   return $.get(api.BASE + url, params);
