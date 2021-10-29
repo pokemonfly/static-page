@@ -37,8 +37,8 @@ async function renderChapter(args) {
   renderList({
     key: "list",
     arr: chapters.map((i) => ({
-      id: i.comic_id,
       name: i.name,
+      id: i.uuid,
       time: i.datetime_created,
     })),
   });
@@ -53,17 +53,17 @@ function render(obj) {
 }
 function renderList({ key, arr }) {
   let $main = $("#main");
-  for (let k in obj) {
+  arr.forEach((i, ind) => {
+    let s = "";
+    for (let y in i) {
+      s += `<div class='${y}'>${i[y]} </div>`;
+    }
+
     $main.append(`<div class='${key}'>
-    ${arr
-      .map((i) => {
-        for (let y in i) {
-          return `<div class='${y}'>${i[y]} </div>`;
-        }
-      })
-      .join("")}
+    <div>${ind}</div>
+    ${s}
     </div>`);
-  }
+  });
 }
 $(function () {
   switch (mode) {
