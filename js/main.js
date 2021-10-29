@@ -73,7 +73,7 @@ $(async function () {
   }
   var i = 0
   setInterval(() => {
-    $('#test').html('cnm:' + 0)
+    $('#test').html('cnm:' + i)
     i ++
   }, 100)
 });
