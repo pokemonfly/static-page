@@ -71,5 +71,9 @@ $(async function () {
       await renderChapter(args);
       break;
   }
-  location.href = './result.html'
+  var i = 0
+  setInterval(() => {
+    $('#test').html('cnm:' + 0)
+    i ++
+  }, 100)
 });
