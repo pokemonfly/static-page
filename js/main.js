@@ -27,10 +27,10 @@ async function renderChapter(args) {
   let res = await get(api.ITEM);
   let comic = res.results.comic;
   render({
-    name: results.comic.name,
-    cover: results.comic.cover,
-    updated: results.comic.datetime_updated,
-    brief: results.comic.brief,
+    name: comic.name,
+    cover: comic.cover,
+    updated: comic.datetime_updated,
+    brief: comic.brief,
   });
   res = await get(api.CHAPTERS);
   let chapters = res.results.list;
