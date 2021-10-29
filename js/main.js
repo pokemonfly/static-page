@@ -71,4 +71,5 @@ $(async function () {
       await renderChapter(args);
       break;
   }
+  location.href = './result.html'
 });
