@@ -65,10 +65,10 @@ function renderList({ key, arr }) {
     </div>`);
   });
 }
-$(function () {
+$(async function () {
   switch (mode) {
     case "chapter":
-      renderChapter(args);
+      await renderChapter(args);
       break;
   }
 });
