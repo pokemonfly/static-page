@@ -20,7 +20,7 @@ function get(url, params) {
 const api = {
   BASE: `https://api.copymanga.com/api/v3`,
   ITEM: `/comic2/[:id]?platform=1`,
-  CHAPTERS: `/comic/[:id]/group/default/chapters?limit=1000&offset=0`,
+  CHAPTERS: `/comic/[:id]/group/default/chapters?limit=500&offset=0`,
 };
 
 async function renderChapter(args) {
