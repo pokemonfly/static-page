@@ -13,7 +13,7 @@ function getQuery(search = window.location.search) {
 const { mode, ...args } = getQuery();
 
 function get(url, params) {
-  url = url.replace(/\[:(.+)\]/g, args[RegExp.$1]);
+  url = url.replace(/\[:(.+)\]/g, () => args[RegExp.$1]);
   return $.get(api.BASE + url, params);
 }
 
@@ -24,13 +24,23 @@ const api = {
 };
 
 async function renderChapter(args) {
-  const { results } = await get(api.ITEM);
-  console.log(results);
+  let res = await get(api.ITEM);
+  let comic = res.results.comic;
   render({
     name: results.comic.name,
     cover: results.comic.cover,
-    updated: results.comic.updated,
+    updated: results.comic.datetime_updated,
     brief: results.comic.brief,
+  });
+  res = await get(api.CHAPTERS);
+  let chapters = res.results.list;
+  renderList({
+    key: "list",
+    arr: chapters.map((i) => ({
+      id: i.comic_id,
+      name: i.name,
+      time: i.datetime_created,
+    })),
   });
 }
 
@@ -39,6 +49,20 @@ function render(obj) {
   for (let k in obj) {
     $main.append(`<div>${k}:</div>`);
     $main.append(`<div id='${k}'>${obj[k]}</div>`);
+  }
+}
+function renderList({ key, arr }) {
+  let $main = $("#main");
+  for (let k in obj) {
+    $main.append(`<div class='${key}'>
+    ${arr
+      .map((i) => {
+        for (let y in i) {
+          return `<div class='${y}'>${i[y]} </div>`;
+        }
+      })
+      .join("")}
+    </div>`);
   }
 }
 $(function () {
